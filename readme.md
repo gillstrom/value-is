@@ -36,6 +36,11 @@ valueIs(arr, 'banana');
 ```
 
 
+## Related
+
+* [value-includes](https://github.com/gillstrom/value-includes) - Get values including a string in an object or array
+
+
 ## License
 
 MIT © [Andreas Gillström](http://github.com/gillstrom)
