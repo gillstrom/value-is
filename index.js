@@ -1,18 +1,17 @@
 'use strict';
-var deepEqual = require('deep-equal');
+const deepEqual = require('deep-equal');
 
-module.exports = function (obj, search) {
+module.exports = (obj, search) => {
 	if (typeof obj !== 'object') {
 		return;
 	}
 
-	var ret = {};
-
-	Object.keys(obj).forEach(function (key) {
+	const ret = Object.keys(obj).reduce((all, key) => {
 		if (deepEqual(obj[key], search)) {
-			ret[key] = obj[key];
+			all[key] = obj[key];
 		}
-	});
+		return all;
+	}, {})
 
 	return ret;
 };
