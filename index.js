@@ -6,13 +6,11 @@ module.exports = (obj, search) => {
 		return;
 	}
 
-	const ret = Object.keys(obj).reduce((all, key) => {
+	return Object.keys(obj).reduce((all, key) => {
 		if (deepEqual(obj[key], search)) {
 			all[key] = obj[key];
 		}
 
 		return all;
 	}, {});
-
-	return ret;
 };

@@ -13,9 +13,9 @@ $ npm install --save value-is
 ## Usage
 
 ```js
-var valueIs = require('value-is');
+const valueIs = require('value-is');
 
-var obj = {
+const obj = {
 	a: 'ape',
 	b: 'banana',
 	c: ['cat']
@@ -24,7 +24,7 @@ var obj = {
 valueIs(obj, ['cat']);
 //=> {c: ['cat']}
 
-var arr = [
+const arr = [
 	'ape',
 	'banana',
 	'cat'
