@@ -1,8 +1,7 @@
-'use strict';
-var test = require('ava');
-var claim = require('claim');
-var valueIs = require('./');
-var obj = {
+import test from 'ava';
+import m from './';
+
+const obj = {
 	a: ['hei'],
 	b: 'hello',
 	c: 'hello',
@@ -13,35 +12,28 @@ var obj = {
 	}
 };
 
-var arr = [
+const arr = [
 	'ape',
 	'banana',
 	'cat',
-	'cat',
-	{
+	'cat', {
 		a: 'pingpong'
 	}
 ];
 
-test('object', function (t) {
-	claim.same(valueIs(obj), {});
-	claim.same(valueIs(obj, 'nope'), {});
-	claim.same(valueIs(obj, ['hei']), {a: ['hei']});
-	claim.same(valueIs(obj, 'hello'), {b: 'hello', c: 'hello'});
-	claim.same(valueIs(obj, {test: 'hello there'}), {f: {test: 'hello there'}});
-	claim.notSame(valueIs(obj, 'bingo'), {d: 'dingdong'});
-	t.end();
+test('object', t => {
+	t.deepEqual(m(obj), {});
+	t.deepEqual(m(obj, 'nope'), {});
+	t.deepEqual(m(obj, ['hei']), {a: ['hei']});
+	t.deepEqual(m(obj, 'hello'), {b: 'hello', c: 'hello'});
+	t.deepEqual(m(obj, {test: 'hello there'}), {f: {test: 'hello there'}});
+	t.notDeepEqual(m(obj, 'bingo'), {d: 'dingdong'});
 });
 
-test('array', function (t) {
-	claim.same(valueIs(arr), {});
-	claim.same(valueIs(arr, 'nope'), {});
-	claim.same(valueIs(arr, {a: 'pingpong'}), {4: {a: 'pingpong'}});
-	claim.same(valueIs(arr, 'banana'), {1: 'banana'});
-	claim.same(valueIs(arr, 'cat'), {2: 'cat', 3: 'cat'});
-	t.end();
+test('array', t => {
+	t.deepEqual(m(arr), {});
+	t.deepEqual(m(arr, 'nope'), {});
+	t.deepEqual(m(arr, {a: 'pingpong'}), {4: {a: 'pingpong'}});
+	t.deepEqual(m(arr, 'banana'), {1: 'banana'});
+	t.deepEqual(m(arr, 'cat'), {2: 'cat', 3: 'cat'});
 });
-
-
-
-
